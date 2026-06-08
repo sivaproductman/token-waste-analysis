@@ -394,9 +394,9 @@ The waste taxonomy and hybrid analyser architecture work on any enterprise promp
 
 Full methodology, hypothesis documentation, the complete story of how the methodology evolved through three failures, and all limitations are documented in the research paper.
 
-📄 Full research paper — [your Google Drive PDF link]  
-✍️ Substack essay — [your Substack URL]  
-📊 LinkedIn series — [your LinkedIn profile]
+📄 Full research paper — https://drive.google.com/file/d/1fHMQKB3e6NU4rp9KFZEdcp_1RsbiFgwZ/view  
+✍️ Substack essay — https://open.substack.com/pub/siva01/p/i-measured-token-waste-in-enterprise?r=5r734n&utm_campaign=post-expanded-share&utm_medium=web  
+📊 LinkedIn series — https://www.linkedin.com/in/siva-seetharaman/
 
 ---
 
