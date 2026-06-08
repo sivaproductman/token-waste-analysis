@@ -375,19 +375,87 @@ All files are also saved to `Google Drive/MyDrive/TokenWasteResearch/` for persi
 | H4 — Waste represents a calculable annual cost at enterprise scale | $9,247/year at 10k calls/day | ✅ Confirmed |
 
 ---
-
 ## Adapting this notebook to your own prompts
 
-To audit your own system prompts for token waste:
+To audit your own system prompts for token waste, you only need to edit
+two cells. Everything else runs unchanged.
 
-1. Replace `P1_ORIGINAL` through `P5_ORIGINAL` in Cell 6 with your actual system prompts
-2. Replace the test inputs in Cell 7 with realistic queries from your real workload
-3. Run Cell 8 — the waste analyser will classify every sentence in your prompts
-4. Run Cell 9 — the baseline run will measure actual token costs from the API
-5. Run Cell 11 — H4 will calculate your annual waste cost from your real data
+---
 
-The waste taxonomy and hybrid analyser architecture work on any enterprise prompt type regardless of domain or task type.
+### Cell 6 — Replace the five prompts with your own
 
+Find Cell 6 in the notebook. You will see five variables defined:
+`P1_ORIGINAL`, `P2_ORIGINAL`, `P3_ORIGINAL`, `P4_ORIGINAL`, `P5_ORIGINAL`.
+
+Replace the text inside each triple-quoted string with your own system prompt.
+You can use fewer than five prompts — just replace what you have and leave the
+rest as they are, or delete the ones you do not need.
+
+Example — replace this:
+
+```python
+P1_ORIGINAL = """You are a helpful AI assistant working as a customer
+support specialist for a B2B SaaS company called CloudSync..."""
+```
+
+With your own:
+
+```python
+P1_ORIGINAL = """You are an AI assistant that helps sales reps prepare
+for customer calls. Given a company name and a sales rep's notes,
+generate a concise pre-call briefing..."""
+```
+
+Also update the prompt name variable to match:
+
+```python
+P1_NAME = "pre_call_briefing"  # change from "customer_support_triage"
+```
+
+---
+
+### Cell 7 — Replace the test inputs with realistic queries
+
+Find Cell 7. You will see `P1_TEST_INPUTS`, `P2_TEST_INPUTS` etc — each is
+a Python list of strings.
+
+Replace the strings with realistic user messages that represent your actual
+workload for that prompt. Use at least 3 inputs per prompt for meaningful
+results. The more representative your inputs, the more accurate the baseline
+token measurements will be.
+
+Example — replace this:
+
+```python
+P1_TEST_INPUTS = [
+    "We haven't received our invoice for last month...",
+    "The dashboard keeps showing a 500 error...",
+]
+```
+
+With your own:
+
+```python
+P1_TEST_INPUTS = [
+    "Company: Acme Corp. Notes: They use Salesforce, 200 employees, \
+evaluating our enterprise plan. Meeting with their VP of Operations.",
+    "Company: TechStart Ltd. Notes: Seed stage startup, 15 people, \
+interested in the startup discount. First call with the founder.",
+]
+```
+
+---
+
+### What to keep the same
+
+Do not change anything in Cells 1 through 5, Cell 8, or Cells 9 through 15.
+The waste analyser, baseline run, and all hypothesis cells work automatically
+on whatever prompts and inputs you define in Cells 6 and 7.
+
+The one exception: if your prompts produce very long outputs — for example
+detailed reports or long-form analysis — increase the `max_tokens` value for
+that prompt in the `MAX_TOKENS_BY_PROMPT` dictionary in Cell 9. If any output
+hits the ceiling exactly, the ceiling check will warn you.
 ---
 
 ## Research paper and further reading
